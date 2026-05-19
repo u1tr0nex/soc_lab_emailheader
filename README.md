@@ -18,20 +18,26 @@ Presented with a raw email header and must answer three questions:
 ## 🚀 Setup & Run Locally
 
 ### Linux (Kali/Ubuntu)
+
+```bash
 git clone https://github.com/YOUR_USERNAME/soc_lab_emailheader.git
 cd soc_lab_emailheader
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 python app.py
+```
 
 ### Windows
+
+```bash
 git clone https://github.com/YOUR_USERNAME/soc_lab_emailheader.git
 cd soc_lab_emailheader
 python -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
 python app.py
+```
 
 Visit: http://127.0.0.1:5000
 
