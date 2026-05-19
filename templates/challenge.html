@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Email Header Analysis Lab</title>
+    <style>
+        body { font-family: monospace; background: #1a1a2e; color: #eee; padding: 30px; }
+        h1 { color: #00d4ff; }
+        pre { background: #0f0f23; padding: 15px; border-left: 4px solid #00d4ff;
+              overflow-x: auto; white-space: pre-wrap; font-size: 13px; }
+        label { display: block; margin-top: 15px; color: #aad4ff; font-weight: bold; }
+        input[type="text"], select {
+            width: 300px; padding: 8px; margin-top: 5px;
+            background: #0f0f23; color: #fff; border: 1px solid #00d4ff; border-radius: 4px;
+        }
+        button { margin-top: 20px; padding: 10px 25px; background: #00d4ff;
+                 color: #000; border: none; cursor: pointer; font-weight: bold; border-radius: 4px; }
+        button:hover { background: #0099bb; }
+        #hint-box { display: none; background: #0f3460; border-left: 4px solid #f0a500;
+                    padding: 12px; margin-top: 15px; border-radius: 4px; }
+        #hint-box p { margin: 6px 0; color: #ffd700; }
+    </style>
+</head>
+<body>
+    <h1>🔍 Email Header Analysis Lab</h1>
+    <p>Analyze the raw email headers below and answer the three questions.</p>
+
+    <pre>{{ headers }}</pre>
+
+    <!-- Hint Button -->
+    <button type="button" onclick="toggleHint()">💡 Show Hint</button>
+    <div id="hint-box">
+        <p><strong>SPF (Sender Policy Framework):</strong> Look for <code>spf=</code> in the <em>Authentication-Results</em> line. It will say <code>pass</code> or <code>fail</code>.</p>
+        <p><strong>Return-Path domain:</strong> Find the <em>Return-Path</em> header. Extract only the domain part after the <code>@</code> symbol.</p><p><strong>Typosquatting tip:</strong> Look closely at domains — attackers replace 'm' with 'rn' (e.g. rnicrosoft.com vs microsoft.com). They look identical at a glance!</p>
+        <p><strong>DKIM:</strong> Look for <code>dkim=</code> in the <em>Authentication-Results</em> line. It will say <code>pass</code> or <code>fail</code>.</p>
+    </div>
+
+    <form method="POST" action="/submit">
+        <label>1. Is the SPF valid? (type: pass or fail)</label>
+        <input type="text" name="spf" placeholder="pass or fail" required>
+
+        <label>2. What is the Return-Path domain? (e.g. example.com)</label>
+        <input type="text" name="return_path" placeholder="domain.com" required>
+
+        <label>3. Does the DKIM signature pass? (type: pass or fail)</label>
+        <input type="text" name="dkim" placeholder="pass or fail" required>
+
+        <br>
+        <button type="submit">Submit Answers</button>
+    </form>
+
+    <script>
+        function toggleHint() {
+            const box = document.getElementById('hint-box');
+            box.style.display = box.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>

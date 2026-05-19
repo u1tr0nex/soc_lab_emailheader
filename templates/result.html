@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lab Results</title>
+    <style>
+        body { font-family: monospace; background: #1a1a2e; color: #eee; padding: 30px; }
+        h1 { color: #00d4ff; }
+        .correct { color: #00ff88; font-weight: bold; }
+        .wrong   { color: #ff4444; font-weight: bold; }
+        pre { background: #0f0f23; padding: 12px; border-left: 4px solid #00d4ff;
+              white-space: pre-wrap; font-size: 13px; }
+        .result-box { background: #0f0f23; padding: 15px; border-radius: 6px; margin: 10px 0; }
+        a { color: #00d4ff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>📋 Your Results</h1>
+
+    <div class="result-box">
+        <p>1. SPF Valid?
+            {% if results.spf %}
+                <span class="correct">✅ Correct! ({{ correct.spf }})</span>
+            {% else %}
+                <span class="wrong">❌ Wrong — You said "{{ user_answers.spf }}", correct answer: {{ correct.spf }}</span>
+            {% endif %}
+        </p>
+        <p>2. Return-Path Domain?
+            {% if results.return_path %}
+                <span class="correct">✅ Correct! ({{ correct.return_path }})</span>
+            {% else %}
+                <span class="wrong">❌ Wrong — You said "{{ user_answers.return_path }}", correct answer: {{ correct.return_path }}</span>
+            {% endif %}
+        </p>
+        <p>3. DKIM Pass?
+            {% if results.dkim %}
+                <span class="correct">✅ Correct! ({{ correct.dkim }})</span>
+            {% else %}
+                <span class="wrong">❌ Wrong — You said "{{ user_answers.dkim }}", correct answer: {{ correct.dkim }}</span>
+            {% endif %}
+        </p>
+    </div>
+
+    {% set score = [results.spf, results.return_path, results.dkim] | select | list | length %}
+    <p>🏆 Score: <strong>{{ score }}/3</strong></p>
+
+    <p><a href="/">🔄 Try Again</a></p>
+</body>
+</html>
