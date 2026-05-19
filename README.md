@@ -20,7 +20,7 @@ Presented with a raw email header and must answer three questions:
 ### Linux (Kali/Ubuntu)
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/soc_lab_emailheader.git
+git clone https://github.com/u1tr0nex/soc_lab_emailheader.git
 cd soc_lab_emailheader
 python3 -m venv venv
 source venv/bin/activate
@@ -31,7 +31,7 @@ python app.py
 ### Windows
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/soc_lab_emailheader.git
+git clone https://github.com/u1tr0nex/soc_lab_emailheader.git
 cd soc_lab_emailheader
 python -m venv venv
 venv\Scripts\activate
